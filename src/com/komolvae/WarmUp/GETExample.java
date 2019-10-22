@@ -1,4 +1,4 @@
-package com.komolvae;
+package com.komolvae.WarmUp;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -11,7 +11,7 @@ import java.net.URL;
 public class GETExample {
 
     public static void main(String[] args) {
-        GETExample example = new GETExample("104.248.47.74", 80);
+        GETExample example = new GETExample("datakomm.work", 80);
         example.doExampleGet();
     }
 
@@ -32,7 +32,7 @@ public class GETExample {
      */
     public void doExampleGet() {
         // TODO: change path to something correct
-        sendGet("dkrest/test/get");
+        sendGet("dkrest/test/get2" + "");
     }
 
     /**
