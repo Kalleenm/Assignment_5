@@ -1,0 +1,29 @@
+
+V
+squid:S106Y"9Replace this use of System.out or System.err by a logger.(¢éÒ„8½…¯¨ß-
+U
+squid:S106?"9Replace this use of System.out or System.err by a logger.(†«ƒj8½…¯¨ß-
+[
+squid:S106S"9Replace this use of System.out or System.err by a logger.(†–£„ýÿÿÿÿ8½…¯¨ß-
+V
+squid:S106L"9Replace this use of System.out or System.err by a logger.(ë’œŸ8½…¯¨ß-
+Psquid:S1068"-Remove this unused "sessionID" private field.(“µºíùÿÿÿÿ8ëãÑ¨ß-
+V
+squid:S106R"9Replace this use of System.out or System.err by a logger.(§ªÞ²8½…¯¨ß-
+nsquid:CommentedOutCodeLine3"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ª§ÃÃß-
+isquid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(Ê‚Ù¶8ª§ÃÃß-
+V
+squid:S106&"9Replace this use of System.out or System.err by a logger.(‘èÜ8Ü¿è¨ß-
+[
+squid:S106o"9Replace this use of System.out or System.err by a logger.(°‰‹½üÿÿÿÿ8½…¯¨ß-
+{squid:S1450"XRemove the "phoneNmbr" field and declare it as a local variable in the relevant methods.(Õ’€¤ûÿÿÿÿ8ƒÌÖ¨ß-
+[
+squid:S106'"9Replace this use of System.out or System.err by a logger.(¿‰Ø»ÿÿÿÿÿ8Ü¿è¨ß-
+Usquid:S1135("2Complete the task associated to this TODO comment.(÷Þù÷ùÿÿÿÿ8Ü¿è¨ß-
+[
+squid:S106["9Replace this use of System.out or System.err by a logger.(ù„î®þÿÿÿÿ8½…¯¨ß-
+rsquid:S1450"TRemove the "email" field and declare it as a local variable in the relevant methods.(¬ µž8ƒÌÖ¨ß-
+Fsquid:S1148\"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8½…¯¨ß-
+V
+squid:S106V"9Replace this use of System.out or System.err by a logger.(ëñè±8½…¯¨ß-
+nsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(Ïð©ûùÿÿÿÿ8ÍçÄß-

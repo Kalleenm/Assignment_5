@@ -11,24 +11,11 @@ public class GEThttp {
     private int sessionID; // My personal session ID.
     private String email; // My NTNU email adress.
     private String phoneNmbr; // My personal phonenumber.
-
+    private JSONObject jsonId; //JSON Object whit session ID.
 
     public static void main(String[] args) {
         GEThttp getHttp = new GEThttp("datakomm.work", 80);
         getHttp.authorize();
-    }
-
-    private void authorize() {
-        this.email = "komolvae@stud.ntnu.no";
-        this.phoneNmbr = "97030747";
-
-        JSONObject json = new JSONObject();
-        json.put("email", this.email);
-        json.put("phone", this.phoneNmbr);
-        System.out.println("Posting this JSON data to server");
-        System.out.println(json.toString());
-        // TODO: change path to something correct
-        sendPost("dkrest/auth", json);
     }
 
     /**
@@ -41,23 +28,32 @@ public class GEThttp {
         BASE_URL = "http://" + host + ":" + port + "/";
     }
 
-    /**
-     * Post three random numbers to a specific path on the web server
-//     */
-//    public void post3RandomNumbers() {
-//        int a = (int) Math.round(Math.random() * 100);
-//        int b = (int) Math.round(Math.random() * 100);
-//        int c = (int) Math.round(Math.random() * 100);
-//
-//        JSONObject json = new JSONObject();
-//        json.put("a", a);
-//        json.put("b", b);
-//        json.put("b", b);
-//        System.out.println("Posting this JSON data to server");
-//        System.out.println(json.toString());
-//        // TODO: change path to something correct
-//        sendPost("dkrest/auth", json);
-//    }
+
+    private void authorize() {
+        this.email = "komolvae@stud.ntnu.no";
+        this.phoneNmbr = "97030747";
+
+        JSONObject json = new JSONObject();
+        json.put("email", this.email);
+        json.put("phone", this.phoneNmbr);
+        System.out.println("Posting this JSON data to server");
+        System.out.println(json.toString());
+        // TODO: change path to something correct
+        sendPost("dkrest/auth", json);
+        requestTask();
+    }
+
+    private void requestTask(){
+        JSONObject jsonTask1 = new JSONObject();
+        System.out.println("Requesting task 1 from server");
+        sendPost("dkrest/gettask/1?sessionId=" + this.sessionID, jsonTask1);
+        task1();
+
+    }
+
+    private void task1() {
+        
+    }
 
     /**
      * Send HTTP POST
@@ -90,6 +86,9 @@ public class GEThttp {
                 stream.close();
                 System.out.println("Response from the server:");
                 System.out.println(responseBody);
+                this.jsonId = new JSONObject(responseBody);
+                this.sessionID = jsonId.getInt("sessionId");
+                System.out.println(this.sessionID);
             } else {
                 String responseDescription = con.getResponseMessage();
                 System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
@@ -120,5 +119,6 @@ public class GEThttp {
             System.out.println("Could not read the data from HTTP response: " + ex.getMessage());
         }
         return response.toString();
+
     }
 }
