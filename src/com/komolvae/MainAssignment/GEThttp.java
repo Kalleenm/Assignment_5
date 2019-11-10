@@ -1,28 +1,40 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONException;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class GEThttp {
 
     private String BASE_URL; // Base URL (address) of the server
     private int sessionID; // My personal session ID.
-    private String email; // My NTNU email adress.
-    private String phoneNmbr; // My personal phonenumber.
-    private JSONObject jsonId; //JSON Object whit session ID.
-    private String recievedMessage;
+    private String answerTask2;
+    private int answerTask3 = 1;
+    private int answerTask4;
+    private String answerHiddenTask;
 
     public static void main(String[] args) {
         GEThttp getHttp = new GEThttp("datakomm.work", 80);
-        getHttp.authorize();
+        getHttp.authorize("komolvae@stud.ntnu.no", "97030747");
+        getHttp.requestTask(1);
+        getHttp.task1();
+        getHttp.requestTask(2);
+        getHttp.task2();
+        getHttp.requestTask(3);
+        getHttp.task3();
+        getHttp.requestTask(4);
     }
 
     /**
-     * Create an HTTP POST example
+     * Create an HTTP POST object
      *
      * @param host Will send request to this host: IP address or domain
      * @param port Will use this port
@@ -32,74 +44,194 @@ public class GEThttp {
     }
 
 
-    private void authorize() {
-        this.email = "komolvae@stud.ntnu.no";
-        this.phoneNmbr = "97030747";
-
+    private void authorize(String email, String phoneNmbr) {
+        try
+        {
         JSONObject json = new JSONObject();
-        json.put("email", this.email);
-        json.put("phone", this.phoneNmbr);
-        System.out.println("Posting this JSON data to server");
-        System.out.println(json.toString());
-        // TODO: change path to something correct
-        sendPost("dkrest/auth", json);
-        requestTask1();
+        json.put("email", email);
+        json.put("phone", phoneNmbr);
+
+            JSONObject json = new JSONObject();
+            json.put("email", email);
+            json.put("phone", phoneNmbr);
+
+            String url = BASE_URL + "dkrest/auth";
+            URL urlObj = new URL(url);
+            System.out.println("Sending HTTP POST to " + url);
+            HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
+
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setDoOutput(true);
+
+            OutputStream os = con.getOutputStream();
+            os.write(json.toString().getBytes());
+            os.flush();
+
+            int responseCode = con.getResponseCode();
+            if (responseCode == 200)
+            {
+                System.out.println("Server reached");
+
+                //Response was OK, read the body (data)
+                InputStream stream = con.getInputStream();
+                String responseBody = convertStreamToString(stream);
+                stream.close();
+                System.out.println("Response from the server:");
+                JSONObject jsonObject = new JSONObject(responseBody);
+                if (jsonObject.has("sessionId"))
+                {
+                    sessionID = jsonObject.getInt("sessionId");
+                }
+                System.out.println(responseBody);
+            }
+            else
+            {
+                String responseDescription = con.getResponseMessage();
+                System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
+            }
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+        } catch (ProtocolException e)
+        {
+            e.printStackTrace();
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
-    private void requestTask1() {
-        JSONObject jsonTask = new JSONObject();
-        System.out.println("Requesting task 1 from server");
-        sendPostRequestTask1( "dkrest/gettask/1?sessionId=" + this.sessionID, jsonTask);
-        task1(); //Answer Task 1
 
+    private void requestTask(int taskNumber) {
+        try {
+            String taskRequest = "dkrest/gettask/" + taskNumber + "?sessionID" + this.sessionID;
+            JSONObject json = sendGet(taskRequest);
+            if (json.has("taskNr")) {
+
+                if (json.getInt("taskNr") == 3) {
+                    JSONArray arguments = json.getJSONArray("arguments");
+                    for (int i = 0; i < arguments.length(); i++) {
+                        answerTask3 = answerTask3 * Integer.parseInt(arguments.getString(i));
+                    }
+                }
+                if (json.getInt("taskNr") == 4) {
+                    JSONArray arguments = json.getJSONArray("arguments");
+                    String md5Hash = arguments.getString(0);
+                    for (int i = 0000; i < 9999; i++) {
+                        String password = "" + i;
+                        MessageDigest md = MessageDigest.getInstance("MD5");
+                        byte[] hashInBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+
+                        StringBuilder sb = new StringBuilder();
+                        for (byte b : hashInBytes) {
+                            sb.append(String.format("%2x", b));
+                        }
+                        if (sb.toString().equals(md5Hash)) {
+                            answerTask4 = i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+     catch(
+    JSONException e)
+
+    {
+        e.printStackTrace();
+    } catch(
+    NoSuchAlgorithmException e)
+
+    {
+        e.printStackTrace();
     }
 
-    private void requestTask2() {
-        JSONObject jsonTask = new JSONObject();
-        System.out.println("Requesting task 2 from server");
-        sendPostRequestTask2( "dkrest/gettask/2?sessionId=" + this.sessionID, jsonTask);
-        task2();
-    }
-
-    private void requestTask3(){
-        JSONObject jsonTask = new JSONObject();
-        System.out.println("Requesting task 3 from server");
-        sendPostRequestTask3( "dkrest/gettask/3?sessionId=" + this.sessionID, jsonTask);
-        task3();
-    }
-
+}
 
 
     private void task1() {
-        String msg = "Hello";
-
         JSONObject jsonTask1 = new JSONObject();
         jsonTask1.put("sessionId", this.sessionID);
-        jsonTask1.put("msg", msg);
+        jsonTask1.put("msg", "Hello");
         System.out.println("Answering task 1:\n");
         System.out.println(jsonTask1.toString());
-        sendPostRequestTask1("dkrest/solve", jsonTask1);
-        requestTask2();
+        sendPost("dkrest/solve", jsonTask1);
     }
 
-    private void task2(){
-        String msg = this.recievedMessage;
-
-        JSONObject jsonTask2 = new JSONObject();
-        jsonTask2.put("sessionId", this.sessionID);
-        jsonTask2.put("msg", msg);
-        System.out.println("Answering task 2:\n");
-        System.out.println(jsonTask2.toString());
-        sendPostRequestTask1("dkrest/solve", jsonTask2);
-        requestTask3();
-    }
-
-    private void task3(){
-
-    }
-
-    private void sendPostRequestTask1(String path, JSONObject jsonData) {
+    private void task2() {
         try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("sessionId", sessionID);
+            jsonObject.put("msg", answerTask2);
+            sendPost("dkrest/solve", jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void task3() {
+
+        try {
+            JSONObject jsonTask3 = new JSONObject();
+            jsonTask3.put("sessionId", this.sessionID);
+            jsonTask3.put("result", answerTask3);
+            System.out.println("Answering task 3:\n");
+            sendPost("dkrest/solve", jsonTask3);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void getResults(){
+        sendGet("dkrest/results" + this.sessionID);
+    }
+
+    private JSONObject sendGet(String path) {
+        try {
+            String url = BASE_URL + path;
+            URL urlObj = new URL(url);
+            System.out.println("Sending HTTP GET to " + url);
+            HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
+
+            con.setRequestMethod("GET");
+
+            int responseCode = con.getResponseCode();
+            if (responseCode == 200) {
+                System.out.println("Server reached");
+                // Response was OK, read the body (data)
+                InputStream stream = con.getInputStream();
+                String responseBody = convertStreamToString(stream);
+                stream.close();
+
+                System.out.println(responseBody);
+                jsonObject = new JSONObject(responseBody);
+            } else {
+                String responseDescription = con.getResponseMessage();
+                System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
+                jsonObject = new JSONObject(responseDescription);
+            }
+        } catch (ProtocolException e) {
+            System.out.println("Protocol not supported by the server");
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+            e.printStackTrace();
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    private void sendPost(String path, JSONObject jsonData)
+    {
+        try
+        {
             String url = BASE_URL + path;
             URL urlObj = new URL(url);
             System.out.println("Sending HTTP POST to " + url);
@@ -113,154 +245,39 @@ public class GEThttp {
             os.write(jsonData.toString().getBytes());
             os.flush();
 
+            System.out.println("Sent " + jsonData.toString() + " to the server.");
+
             int responseCode = con.getResponseCode();
-            if (responseCode == 200) {
+            if (responseCode == 200)
+            {
                 System.out.println("Server reached");
 
-                // Response was OK, read the body (data)
+                //Response was OK, read the body (data)
                 InputStream stream = con.getInputStream();
                 String responseBody = convertStreamToString(stream);
                 stream.close();
                 System.out.println("Response from the server:");
+                //JSONObject jsonObject = new JSONObject(responseBody);
                 System.out.println(responseBody);
-            } else {
+            }
+            else
+            {
                 String responseDescription = con.getResponseMessage();
                 System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
             }
-        } catch (ProtocolException e) {
-            System.out.println("Protocol nto supported by the server");
-        } catch (IOException e) {
+
+        } catch (ProtocolException e)
+        {
+            System.out.println("Protocol not supported by the server");
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
             System.out.println("Something went wrong: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
-    private void sendPostRequestTask2(String path, JSONObject jsonData) {
-        try {
-            String url = BASE_URL + path;
-            URL urlObj = new URL(url);
-            System.out.println("Sending HTTP POST to " + url);
-            HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
-
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setDoOutput(true);
-
-            OutputStream os = con.getOutputStream();
-            os.write(jsonData.toString().getBytes());
-            os.flush();
-
-            int responseCode = con.getResponseCode();
-            if (responseCode == 200) {
-                System.out.println("Server reached");
-
-                // Response was OK, read the body (data)
-                InputStream stream = con.getInputStream();
-                String responseBody = convertStreamToString(stream);
-                stream.close();
-                System.out.println("Response from the server:");
-                System.out.println(responseBody);
-
-                JSONObject jsonObj = new JSONObject(responseBody);
-                JSONArray jsonTask2 = jsonObj.getJSONArray("arguments");
-                this.recievedMessage = jsonTask2.get(0).toString();
-
-                System.out.println("Arguments from task 2: " + this.recievedMessage + "\n");
-            } else {
-                String responseDescription = con.getResponseMessage();
-                System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
-            }
-        } catch (ProtocolException e) {
-            System.out.println("Protocol nto supported by the server");
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private void sendPostRequestTask3(String path, JSONObject jsonData) {
-        try {
-            String url = BASE_URL + path;
-            URL urlObj = new URL(url);
-            System.out.println("Sending HTTP POST to " + url);
-            HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
-
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setDoOutput(true);
-
-            OutputStream os = con.getOutputStream();
-            os.write(jsonData.toString().getBytes());
-            os.flush();
-
-            int responseCode = con.getResponseCode();
-            if (responseCode == 200) {
-                System.out.println("Server reached");
-
-                // Response was OK, read the body (data)
-                InputStream stream = con.getInputStream();
-                String responseBody = convertStreamToString(stream);
-                stream.close();
-                System.out.println("Response from the server:");
-                System.out.println(responseBody);
-            } else {
-                String responseDescription = con.getResponseMessage();
-                System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
-            }
-        } catch (ProtocolException e) {
-            System.out.println("Protocol nto supported by the server");
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Send HTTP POST
-     *
-     * @param path     Relative path in the API.
-     * @param jsonData The data in JSON format that will be posted to the server
-     */
-    private void sendPost(String path, JSONObject jsonData) {
-        try {
-            String url = BASE_URL + path;
-            URL urlObj = new URL(url);
-            System.out.println("Sending HTTP POST to " + url);
-            HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
-
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setDoOutput(true);
-
-            OutputStream os = con.getOutputStream();
-            os.write(jsonData.toString().getBytes());
-            os.flush();
-
-            int responseCode = con.getResponseCode();
-            if (responseCode == 200) {
-                System.out.println("Server reached");
-
-                // Response was OK, read the body (data)
-                InputStream stream = con.getInputStream();
-                String responseBody = convertStreamToString(stream);
-                stream.close();
-                System.out.println("Response from the server:");
-                System.out.println(responseBody);
-                this.jsonId = new JSONObject(responseBody);
-                this.sessionID = jsonId.getInt("sessionId");
-                System.out.println("SessionID: " + this.sessionID + "\n");
-            } else {
-                String responseDescription = con.getResponseMessage();
-                System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
-            }
-        } catch (ProtocolException e) {
-            System.out.println("Protocol nto supported by the server");
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Read the whole content from an InputStream, return it as a string
      *

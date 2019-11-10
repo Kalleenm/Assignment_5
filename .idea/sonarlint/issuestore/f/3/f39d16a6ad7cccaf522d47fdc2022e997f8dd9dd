@@ -1,29 +1,109 @@
 
+Gsquid:S1148ê"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‡Öúâ-
+W
+squid:S106ç"9Replace this use of System.out or System.err by a logger.(¢éÒ„8‡Öúâ-
+W
+squid:S106•"9Replace this use of System.out or System.err by a logger.(¢éÒ„8‡Öúâ-
+\
+squid:S106±"9Replace this use of System.out or System.err by a logger.(ÜÍÚ”úÿÿÿÿ8‡Öúâ-
+\
+squid:S106é"9Replace this use of System.out or System.err by a logger.(ù„î®şÿÿÿÿ8‡Öúâ-
+ssquid:S1192r"VDefine a constant instead of duplicating this literal "Sending HTTP POST to " 4 times.(†«ƒj8‡Öúâ-
+W
+squid:S106ä"9Replace this use of System.out or System.err by a logger.(ëñè±8‡Öúâ-
+\
+squid:S106¹"9Replace this use of System.out or System.err by a logger.(ù„î®şÿÿÿÿ8‡Öúâ-
+\
+squid:S106Ù"9Replace this use of System.out or System.err by a logger.(†–£„ıÿÿÿÿ8‡Öúâ-
 V
-squid:S106Y"9Replace this use of System.out or System.err by a logger.(¢éÒ„8½…¯¨ß-
+squid:S106"9Replace this use of System.out or System.err by a logger.(ë’œŸ8½…¯¨ß-
+\
+squid:S106¬"9Replace this use of System.out or System.err by a logger.(°‰‹½üÿÿÿÿ8½…¯¨ß-
+ysquid:S1192…"ZDefine a constant instead of duplicating this literal "Response from the server:" 4 times.(§ªŞ²8‡Öúâ-
+[
+squid:S106,"9Replace this use of System.out or System.err by a logger.(¿‰Ø»ÿÿÿÿÿ8Ü¿è¨ß-
+\
+squid:S106«"9Replace this use of System.out or System.err by a logger.(†–£„ıÿÿÿÿ8‡Öúâ-
+\
+squid:S106"9Replace this use of System.out or System.err by a logger.(ù„î®şÿÿÿÿ8½…¯¨ß-
+ksquid:S1192v"MDefine a constant instead of duplicating this literal "Content-Type" 4 times.(—‰µô8‡Öúâ-
+{squid:S1450"XRemove the "phoneNmbr" field and declare it as a local variable in the relevant methods.(Õ’€¤ûÿÿÿÿ8ƒÌÖ¨ß-
+Gsquid:S1148º"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‡Öúâ-
+[
+squid:S106Q"9Replace this use of System.out or System.err by a logger.(ŸåÛüıÿÿÿÿ8‡Öúâ-
+ssquid:S1450"URemove the "jsonId" field and declare it as a local variable in the relevant methods.(À×‹‹8‡Öúâ-
+[
+squid:S106]"9Replace this use of System.out or System.err by a logger.(Óı«Ãùÿÿÿÿ8‡Öúâ-
+W
+squid:S106‰"9Replace this use of System.out or System.err by a logger.(ëñè±8½…¯¨ß-
+W
+squid:S106Ò"9Replace this use of System.out or System.err by a logger.(ë’œŸ8‡Öúâ-
+W
+squid:S106‹"9Replace this use of System.out or System.err by a logger.(§ªŞ²8‡Öúâ-
+W
+squid:S106…"9Replace this use of System.out or System.err by a logger.(ë’œŸ8‡Öúâ-
+\
+squid:S106Œ"9Replace this use of System.out or System.err by a logger.(†–£„ıÿÿÿÿ8‡Öúâ-
+Xsquid:S1191"5Use classes from the Java API instead of Sun classes.(™¦èûÿÿÿÿ8‡Öúâ-
+V
+squid:S106—"9Replace this use of System.out or System.err by a logger.(†«ƒj8‡Öúâ-
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8½…¯¨ß-
+\
+squid:S106†"9Replace this use of System.out or System.err by a logger.(†–£„ıÿÿÿÿ8½…¯¨ß-
+V
+squid:S106+"9Replace this use of System.out or System.err by a logger.(‘èÜ8Ü¿è¨ß-
+Usquid:S1135-"2Complete the task associated to this TODO comment.(÷Şù÷ùÿÿÿÿ8Ü¿è¨ß-
+W
+squid:S106´"9Replace this use of System.out or System.err by a logger.(ëñè±8‡Öúâ-
+[
+squid:S106h"9Replace this use of System.out or System.err by a logger.(ü’¯øşÿÿÿÿ8‡Öúâ-
+\
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ñ†€ÿÿÿÿÿ8‡Öúâ-
+msquid:S1192"ODefine a constant instead of duplicating this literal "Server reached" 4 times.(ë’œŸ8‡Öúâ-
+{squid:S1192"WDefine a constant instead of duplicating this literal "Something went wrong: " 4 times.(ù„î®şÿÿÿÿ8‡Öúâ-
+V
+squid:S106i"9Replace this use of System.out or System.err by a logger.(Ñº8‡Öúâ-
+„squid:S1192Œ"eDefine a constant instead of duplicating this literal "Protocol nto supported by the server" 4 times.(¢éÒ„8‡Öúâ-
+V
+squid:S1064"9Replace this use of System.out or System.err by a logger.(öôÕÄ8‡Öúâ-
+squid:S1192‰"`Define a constant instead of duplicating this literal "Request failed, response code: " 4 times.(ëñè±8‡Öúâ-
+msquid:S1192N"JDefine a constant instead of duplicating this literal "sessionId" 4 times.(ä¤Âúüÿÿÿÿ8‡Öúâ-
+V
+squid:S106<"9Replace this use of System.out or System.err by a logger.(ÅŒ—Â8‡Öúâ-
+W
+squid:S106·"9Replace this use of System.out or System.err by a logger.(¢éÒ„8‡Öúâ-
+[
+squid:S106C"9Replace this use of System.out or System.err by a logger.(«¸áÊıÿÿÿÿ8‡Öúâ-
+W
+squid:S106Œ"9Replace this use of System.out or System.err by a logger.(¢éÒ„8½…¯¨ß-
+\
+squid:S106á"9Replace this use of System.out or System.err by a logger.(Í™Á¼üÿÿÿÿ8‡Öúâ-
+W
+squid:S106…"9Replace this use of System.out or System.err by a logger.(§ªŞ²8½…¯¨ß-
+[
+squid:S106\"9Replace this use of System.out or System.err by a logger.(ø†Üôıÿÿÿÿ8‡Öúâ-
+osquid:S1192v"QDefine a constant instead of duplicating this literal "application/json" 4 times.(—‰µô8‡Öúâ-
+psquid:S1192R"MDefine a constant instead of duplicating this literal "dkrest/solve" 3 times.(¡³÷ıÿÿÿÿ8‡Öúâ-
+usquid:S00117c"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öâ¤Şøÿÿÿÿ8‡Öúâ-
+~squid:UselessImportCheck"NRemove this unused import 'com.sun.org.apache.xpath.internal.operations.Bool'.(™¦èûÿÿÿÿ8‡Öúâ-
+rsquid:S1450"TRemove the "email" field and declare it as a local variable in the relevant methods.(¬ µ8ƒÌÖ¨ß-
+W
+squid:S106¤"9Replace this use of System.out or System.err by a logger.(ë’œŸ8‡Öúâ-
+W
+squid:S106Ø"9Replace this use of System.out or System.err by a logger.(§ªŞ²8‡Öúâ-
+csquid:HiddenFieldCheckc"5Rename "X" which hides the field declared at line 18.(Öâ¤Şøÿÿÿÿ8‡Öúâ-
+V
+squid:S106ø"9Replace this use of System.out or System.err by a logger.(†«ƒj8‡Öúâ-
+W
+squid:S106’"9Replace this use of System.out or System.err by a logger.(ëñè±8‡Öúâ-
+\
+squid:S106—"9Replace this use of System.out or System.err by a logger.(ù„î®şÿÿÿÿ8‡Öúâ-
+Gsquid:S1148˜"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‡Öúâ-
+W
+squid:S106ª"9Replace this use of System.out or System.err by a logger.(§ªŞ²8‡Öúâ-
 U
-squid:S106?"9Replace this use of System.out or System.err by a logger.(†«ƒj8½…¯¨ß-
-[
-squid:S106S"9Replace this use of System.out or System.err by a logger.(†–£„ıÿÿÿÿ8½…¯¨ß-
+squid:S106P"9Replace this use of System.out or System.err by a logger.(ÏÃÈ8‡Öúâ-
+U
+squid:S106r"9Replace this use of System.out or System.err by a logger.(†«ƒj8½…¯¨ß-
 V
-squid:S106L"9Replace this use of System.out or System.err by a logger.(ë’œŸ8½…¯¨ß-
-Psquid:S1068"-Remove this unused "sessionID" private field.(“µºíùÿÿÿÿ8ëãÑ¨ß-
-V
-squid:S106R"9Replace this use of System.out or System.err by a logger.(§ªŞ²8½…¯¨ß-
-nsquid:CommentedOutCodeLine3"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ª§ÃÃß-
-isquid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(Ê‚Ù¶8ª§ÃÃß-
-V
-squid:S106&"9Replace this use of System.out or System.err by a logger.(‘èÜ8Ü¿è¨ß-
-[
-squid:S106o"9Replace this use of System.out or System.err by a logger.(°‰‹½üÿÿÿÿ8½…¯¨ß-
-{squid:S1450"XRemove the "phoneNmbr" field and declare it as a local variable in the relevant methods.(Õ’€¤ûÿÿÿÿ8ƒÌÖ¨ß-
-[
-squid:S106'"9Replace this use of System.out or System.err by a logger.(¿‰Ø»ÿÿÿÿÿ8Ü¿è¨ß-
-Usquid:S1135("2Complete the task associated to this TODO comment.(÷Şù÷ùÿÿÿÿ8Ü¿è¨ß-
-[
-squid:S106["9Replace this use of System.out or System.err by a logger.(ù„î®şÿÿÿÿ8½…¯¨ß-
-rsquid:S1450"TRemove the "email" field and declare it as a local variable in the relevant methods.(¬ µ8ƒÌÖ¨ß-
-Fsquid:S1148\"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8½…¯¨ß-
-V
-squid:S106V"9Replace this use of System.out or System.err by a logger.(ëñè±8½…¯¨ß-
-nsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(Ïğ©ûùÿÿÿÿ8ÍçÄß-
+squid:S106Â"9Replace this use of System.out or System.err by a logger.(†«ƒj8‡Öúâ-
